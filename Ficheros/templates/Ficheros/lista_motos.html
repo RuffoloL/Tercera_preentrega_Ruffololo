@@ -6,15 +6,15 @@
 
     {% block contenido %}
     <h1 style="color:blue;">
-      Gracias por elegirnos 
+      Gracias por elegirnos
     </h1>
 
-    <h3>Tenemos para ofrecerle:</h3>
+    <h3>Tenemos para ofrecerle: </h3>
     <ul>
-    {% for auto in autos %}
+    {% for moto in motos %}
     <li>
-      {{ auto.marca}}, {{ auto.modelo}}
-      {% if auto.año < 2010 %}
+      {{ moto.marca}}, {{ moto.modelo}}
+      {% if moto.año < 2010 %}
        NO APTO
       {% else %}
        APTO
@@ -23,4 +23,3 @@
     {% endfor %}
     </ul>
     {% endblock contenido %}
- 

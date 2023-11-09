@@ -23,9 +23,10 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Clientes</a>
-                <a class="navbar-brand" href="#!">Autos</a>
-                <a class="navbar-brand" href="#!">Motos</a>
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'lista_clientes' %}">Clientes</a>
+                <a class="navbar-brand" href="{% url 'lista_autos' %}">Autos</a>
+                <a class="navbar-brand" href="{% url 'lista_motos' %}">Motos</a>
                 <a class="btn btn-primary" href="#signup">INICIAR</a>
             </div>
         </nav>

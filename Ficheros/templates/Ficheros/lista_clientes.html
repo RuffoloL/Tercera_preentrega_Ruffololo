@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<title>3ra Preentrega - Ruffolo</title>
+{% endblock titulo %}
+
+    {% block contenido %}
+    <h1 style="color:blue;">
+      Base de Clientes
+    </h1>
+
+    
+    <ul>
+    {% for cliente in clientes %}
+    <li>
+      {{ cliente.nombre}}, {{ cliente.apellido}}
+     
+    </li>
+    {% endfor %}
+    </ul>
+    {% endblock contenido %}
