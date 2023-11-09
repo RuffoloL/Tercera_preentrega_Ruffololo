@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<title>3ra Preentrega - Ruffolo</title>
+{% endblock titulo %}
+
+    {% block contenido %}
+    <h1 style="color:blue;">
+      Bienvenidos 
+    </h1>
+
+    <h3>Autos en vista</h3>
+    <ul>
+    {% for auto in autos %}
+    <li>
+      {{ auto.marca}}, {{ auto.modelo}}
+      {% if auto.año < 2010 %}
+       NO APTO
+      {% else %}
+       APTO
+      {% endif %}
+    </li>
+    {% endfor %}
+    </ul>
+    {% endblock contenido %}
+ 

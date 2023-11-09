@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from Ficheros.views import saludo_html
+from Ficheros.views import listar_autos, saludo_html
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", saludo_html),
+    path('autos/', listar_autos)
+   
     
 ]
