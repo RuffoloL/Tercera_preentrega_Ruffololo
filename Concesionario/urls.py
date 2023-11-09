@@ -24,6 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('autos/', include("Ficheros.urls")),
     path('motos/', include("Ficheros.urls")),
-    path("", saludo_html, name="Inicio"),
+    path("", saludo_html, name="inicio"),
     
 ]
