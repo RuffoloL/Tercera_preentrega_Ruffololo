@@ -65,7 +65,7 @@ def crear_autos(request):
         #Guardado de datos
         data = request.POST
         #Creo un curso en memoria RAM
-        auto = Auto(nombre=data['marca'], apellido=data['modelo'], año=data['año'], precio=data['precio'])
+        auto = Auto(marca=data['marca'], modelo=data['modelo'], año=data['año'], precio=data['precio'])
         # .save lo guarda en la base de datos
         auto.save()
         #Redirecciono al usuario a la lista de cursos
