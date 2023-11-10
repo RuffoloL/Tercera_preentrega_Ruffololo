@@ -19,3 +19,14 @@ Acceder con user y password via:
 
 ``` http://127.0.0.1:8000/admin/
 ```
+Acceso a clientes /ficheros/clientes/
+         autos /ficheros/autos/
+         motos / ficheros motos/
+
+de igual forma podemos acceder a la carga de los mismos 
+
+ficheros/crear-clientes/
+        /crear-autos/
+        /crear-motos/
+
+        
