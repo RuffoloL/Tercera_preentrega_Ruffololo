@@ -13,12 +13,8 @@
     <ul>
     {% for auto in autos %}
     <li>
-      {{ auto.marca}}, {{ auto.modelo}}
-      {% if auto.año < 2010 %}
-       NO APTO
-      {% else %}
-       APTO
-      {% endif %}
+      {{ auto.marca}}, {{ auto.modelo}}, {{auto.año}}, ${{auto.precio}}
+      
     </li>
     {% endfor %}
     </ul>
