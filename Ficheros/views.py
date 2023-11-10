@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+
+from Ficheros.forms import ClienteFormulario
+
 from Ficheros.models import Auto, Moto, Cliente
 
 
@@ -38,7 +41,7 @@ def listar_clientes(request):
     )
     return http_response
 
-def crear_clientes(request):
+#def crear_clientes(request):
     if request.method == "POST": #request.POST es un diccionario
         #Guardado de datos
         data = request.POST
@@ -94,3 +97,28 @@ def crear_motos(request):
             template_name='Ficheros/formulario_motos.html',
     )
     return http_response
+
+def crear_clientes(request):
+   if request.method == "POST":
+       formulario = ClienteFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data  # es un diccionario
+           nombre = data["nombre"]
+           apellido = data["apellido"]
+           email = data["email"]
+           cliente = Cliente(nombre=nombre, apellido=apellido, email=email)  # lo crean solo en RAM
+           cliente.save()  # Lo guardan en la Base de datos
+
+           # Redirecciono al usuario a la lista de cursos
+           url_exitosa = reverse('lista_clientes')  # estudios/cursos/
+           return redirect(url_exitosa)
+   else:  # GET
+       formulario = ClienteFormulario()
+   http_response = render(
+       request=request,
+       template_name='Ficheros/formulario_clientes1.html',
+       context={'formulario': formulario}
+   )
+   return http_response
+
