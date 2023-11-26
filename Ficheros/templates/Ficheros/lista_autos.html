@@ -1,22 +1,51 @@
 {% extends "base.html" %}
 
 {% block titulo %}
-<title>3ra Preentrega - Ruffolo</title>
+<title> - Autos - </title>
 {% endblock titulo %}
 
     {% block contenido %}
     <h1 style="color:blue;">
       Gracias por elegirnos 
     </h1>
+    <a class="btn btn-primary" href="{% url "lista_autos" %}">Ver todos</a>
+    <a class="btn btn-primary" href="{% url "crear_autos" %}">Agregar auto</a>
+    <br><br>
+    <form action="{% url 'buscar_autos' %}" method="post">
+     {% csrf_token %}
+     <input type="text" name="busqueda">
+     <input type="submit" value="Buscar por marca">
+    </form>
+    <br><br>
 
     <h3>Tenemos para ofrecerle:</h3>
-    <ul>
-    {% for auto in autos %}
-    <li>
-      {{ auto.marca}}, {{ auto.modelo}}, {{auto.año}}, ${{auto.precio}}
-      
-    </li>
-    {% endfor %}
-    </ul>
+    <br><br>
+    <table class="table">
+      <tbody>
+        <tr>
+          
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Año</th>
+          <th>Precio</th>
+          <th></th>
+        </tr>
+        {% for auto in autos %}
+        <tr>
+          
+          <td>{{ auto.marca}}</td>
+          <td>{{ auto.modelo}}</td>
+          <td>{{auto.año}}</td>
+          <td>${{auto.precio}}</td>
+          <td>
+            <form action="{% url 'eliminar_auto' auto.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-danger  btn-sm" value="Eliminar"/>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     {% endblock contenido %}
  
