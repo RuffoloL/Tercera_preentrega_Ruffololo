@@ -41,62 +41,7 @@ def listar_clientes(request):
     )
     return http_response
 
-#def crear_clientes(request):
-    if request.method == "POST": #request.POST es un diccionario
-        #Guardado de datos
-        data = request.POST
-        #Creo un curso en memoria RAM
-        cliente = Cliente(nombre=data['nombre'], apellido=data['apellido'])
-        # .save lo guarda en la base de datos
-        cliente.save()
-        #Redirecciono al usuario a la lista de cursos
-        url_exitosa = reverse('lista_clientes')
-        return redirect(url_exitosa)
-    else: #GET
-        #Descarga formulario inicial
-            http_response = render(
-            request=request,
-            template_name='Ficheros/formulario_clientes.html',
-    )
-    return http_response
 
-#def crear_autos(request):
-    if request.method == "POST": #request.POST es un diccionario
-        #Guardado de datos
-        data = request.POST
-        #Creo un curso en memoria RAM
-        auto = Auto(marca=data['marca'], modelo=data['modelo'], año=data['año'], precio=data['precio'])
-        # .save lo guarda en la base de datos
-        auto.save()
-        #Redirecciono al usuario a la lista de cursos
-        url_exitosa = reverse('lista_autos')
-        return redirect(url_exitosa)
-    else: #GET
-        #Descarga formulario inicial
-            http_response = render(
-            request=request,
-            template_name='Ficheros/formulario_autos.html',
-    )
-    return http_response
-
-#def crear_motos(request):
-    if request.method == "POST": #request.POST es un diccionario
-        #Guardado de datos
-        data = request.POST
-        #Creo un curso en memoria RAM
-        moto = Moto(marca=data['marca'], modelo=data['modelo'], año=data['año'], precio=data['precio'])
-        # .save lo guarda en la base de datos
-        moto.save()
-        #Redirecciono al usuario a la lista de cursos
-        url_exitosa = reverse('lista_motos')
-        return redirect(url_exitosa)
-    else: #GET
-        #Descarga formulario inicial
-            http_response = render(
-            request=request,
-            template_name='Ficheros/formulario_motos.html',
-    )
-    return http_response
 
 def crear_clientes(request):
    if request.method == "POST":
@@ -221,6 +166,16 @@ def buscar_motos(request):
        )
        return http_response
    
+def eliminar_cliente(request, id):
+    # obtienes el auto de la BD
+   cliente = Cliente.objects.get(id=id)
+   if request.method == "POST":
+       #borra el auto de la BD
+       cliente.delete()
+       #redireccionamos a la URL exitosa
+       url_exitosa = reverse('lista_clientes')
+       return redirect(url_exitosa)
+   
 
 def eliminar_auto(request, id):
     # obtienes el auto de la BD
@@ -241,3 +196,92 @@ def eliminar_moto(request, id):
        #redireccionamos a la URL exitosa
        url_exitosa = reverse('lista_motos')
        return redirect(url_exitosa)
+   
+
+def editar_auto(request, id):
+   auto = Auto.objects.get(id=id)
+   if request.method == "POST":
+       #Actualizacion de datos
+       formulario = AutoFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           auto.marca = data['marca']
+           auto.modelo = data['modelo']
+           auto.año = data['año']
+           auto.precio = data['precio']
+           auto.save()
+           url_exitosa = reverse('lista_autos')
+           return redirect(url_exitosa)
+   else:  # GET
+       #Derscargar formulario con data actual
+       inicial = {
+           'marca': auto.marca,
+           'modelo': auto.modelo,
+           'año': auto.año,
+           'precio': auto.precio,
+       }
+       formulario = AutoFormulario(initial=inicial)
+   return render(
+       request=request,
+       template_name='Ficheros/formulario_autos1.html',
+       context={'formulario': formulario},
+   )
+   
+def editar_moto(request, id):
+   moto = Moto.objects.get(id=id)
+   if request.method == "POST":
+       #Actualizacion de datos
+       formulario = MotoFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           moto.marca = data['marca']
+           moto.modelo = data['modelo']
+           moto.año = data['año']
+           moto.precio = data['precio']
+           moto.save()
+           url_exitosa = reverse('lista_motos')
+           return redirect(url_exitosa)
+   else:  # GET
+       #Derscargar formulario con data actual
+       inicial = {
+           'marca': moto.marca,
+           'modelo': moto.modelo,
+           'año': moto.año,
+           'precio': moto.precio,
+       }
+       formulario = MotoFormulario(initial=inicial)
+   return render(
+       request=request,
+       template_name='Ficheros/formulario_motos1.html',
+       context={'formulario': formulario},
+   )
+
+def editar_cliente(request, id):
+   cliente = Cliente.objects.get(id=id)
+   if request.method == "POST":
+       #Actualizacion de datos
+       formulario = ClienteFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           cliente.nombre = data['nombre']
+           cliente.apellido = data['apellido']
+           cliente.email = data['email']
+           cliente.save()
+           url_exitosa = reverse('lista_clientes')
+           return redirect(url_exitosa)
+   else:  # GET
+       #Derscargar formulario con data actual
+       inicial = {
+           'nombre': cliente.nombre,
+           'apellido': cliente.apellido,
+           'email': cliente.email,
+       }
+       formulario = ClienteFormulario(initial=inicial)
+   return render(
+       request=request,
+       template_name='Ficheros/formulario_clientes1.html',
+       context={'formulario': formulario},
+   )

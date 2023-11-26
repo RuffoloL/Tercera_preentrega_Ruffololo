@@ -36,6 +36,9 @@
           <td>{{ moto.año}}</td>
           <td>${{moto.precio}}</td>
           <td>
+            <a class="btn btn-primary btn-sm" href="{% url 'editar_moto' moto.id %}">Editar</a>
+          </td>
+          <td>
             <form action="{% url 'eliminar_moto' moto.id %}" method="post">
               {% csrf_token %}
               <input type="submit" class="btn btn-danger  btn-sm" value="Eliminar"/>

@@ -29,6 +29,7 @@
           <th>Año</th>
           <th>Precio</th>
           <th></th>
+          <th></th>
         </tr>
         {% for auto in autos %}
         <tr>
@@ -37,6 +38,9 @@
           <td>{{ auto.modelo}}</td>
           <td>{{auto.año}}</td>
           <td>${{auto.precio}}</td>
+          <td>
+            <a class="btn btn-primary btn-sm" href="{% url 'editar_auto' auto.id %}">Editar</a>
+          </td>
           <td>
             <form action="{% url 'eliminar_auto' auto.id %}" method="post">
               {% csrf_token %}

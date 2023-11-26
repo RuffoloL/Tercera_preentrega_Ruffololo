@@ -23,6 +23,7 @@ from Concesionario.views import saludo_html
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ficheros/', include("Ficheros.urls")),
+    path('perfiles/', include("Perfiles.urls")),
     
     path("", saludo_html, name="inicio"),
     
