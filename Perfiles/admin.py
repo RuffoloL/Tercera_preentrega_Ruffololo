@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from Perfiles.models import Avatar
+
+
+admin.site.register(Avatar)
+
