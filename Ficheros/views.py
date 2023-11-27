@@ -79,7 +79,7 @@ def crear_autos(request):
            modelo = data["modelo"]
            año = data["año"]
            precio = data["precio"]
-           auto = Auto(marca=marca, modelo=modelo, año=año, precio=precio)  # lo crean solo en RAM
+           auto = Auto(marca=marca, modelo=modelo, año=año, precio=precio, creador=request.user)  # lo crean solo en RAM
            auto.save()  # Lo guardan en la Base de datos
 
            # Redirecciono al usuario a la lista de cursos
@@ -105,7 +105,7 @@ def crear_motos(request):
            modelo = data["modelo"]
            año = data["año"]
            precio = data["precio"]
-           moto = Moto(marca=marca, modelo=modelo, año=año, precio=precio)  # lo crean solo en RAM
+           moto = Moto(marca=marca, modelo=modelo, año=año, precio=precio, creador=request.user)  # lo crean solo en RAM
            moto.save()  # Lo guardan en la Base de datos
 
            # Redirecciono al usuario a la lista de cursos
