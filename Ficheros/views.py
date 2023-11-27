@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
 
 from Ficheros.forms import ClienteFormulario, AutoFormulario, MotoFormulario
 
@@ -29,7 +31,7 @@ def listar_motos(request):
     )
     return http_response
 
-
+@login_required
 def listar_clientes(request):
     contexto ={
         "clientes" : Cliente.objects.all()
@@ -41,8 +43,7 @@ def listar_clientes(request):
     )
     return http_response
 
-
-
+@login_required
 def crear_clientes(request):
    if request.method == "POST":
        formulario = ClienteFormulario(request.POST)
@@ -67,7 +68,7 @@ def crear_clientes(request):
    )
    return http_response
 
-
+@login_required
 def crear_autos(request):
    if request.method == "POST":
        formulario = AutoFormulario(request.POST)
@@ -93,8 +94,7 @@ def crear_autos(request):
    )
    return http_response
 
-
-
+@login_required
 def crear_motos(request):
    if request.method == "POST":
        formulario = MotoFormulario(request.POST)
@@ -120,6 +120,7 @@ def crear_motos(request):
    )
    return http_response
 
+@login_required
 def buscar_clientes(request):
    if request.method == "POST":
        data = request.POST
@@ -134,6 +135,7 @@ def buscar_clientes(request):
            context=contexto,
        )
        return http_response
+ 
    
 def buscar_autos(request):
    if request.method == "POST":
@@ -166,6 +168,7 @@ def buscar_motos(request):
        )
        return http_response
    
+@login_required
 def eliminar_cliente(request, id):
     # obtienes el auto de la BD
    cliente = Cliente.objects.get(id=id)
@@ -176,7 +179,7 @@ def eliminar_cliente(request, id):
        url_exitosa = reverse('lista_clientes')
        return redirect(url_exitosa)
    
-
+@login_required
 def eliminar_auto(request, id):
     # obtienes el auto de la BD
    auto = Auto.objects.get(id=id)
@@ -187,6 +190,7 @@ def eliminar_auto(request, id):
        url_exitosa = reverse('lista_autos')
        return redirect(url_exitosa)
    
+@login_required
 def eliminar_moto(request, id):
     # obtienes la moto de la BD
    moto = Moto.objects.get(id=id)
@@ -197,7 +201,7 @@ def eliminar_moto(request, id):
        url_exitosa = reverse('lista_motos')
        return redirect(url_exitosa)
    
-
+@login_required
 def editar_auto(request, id):
    auto = Auto.objects.get(id=id)
    if request.method == "POST":
@@ -228,6 +232,7 @@ def editar_auto(request, id):
        context={'formulario': formulario},
    )
    
+@login_required  
 def editar_moto(request, id):
    moto = Moto.objects.get(id=id)
    if request.method == "POST":
@@ -258,6 +263,7 @@ def editar_moto(request, id):
        context={'formulario': formulario},
    )
 
+@login_required
 def editar_cliente(request, id):
    cliente = Cliente.objects.get(id=id)
    if request.method == "POST":

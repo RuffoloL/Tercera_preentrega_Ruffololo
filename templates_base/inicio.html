@@ -6,5 +6,9 @@
 
 
 {% block contenido %}
-<h1> - Ruffolo - Proyecto Final - </h1>
+{% if user.is_authenticated %}
+<h1> Bienvenido de nuevo {{ user.first_name }}, {{ user.last_name}} </h1>
+{% else %}
+<h1> Gracias por visitarnos </h1>
+{% endif %}
 {% endblock contenido %}
