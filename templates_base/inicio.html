@@ -9,7 +9,7 @@
 {% if user.is_authenticated %}
 <h1> Bienvenido de nuevo {{ user.first_name }}, {{ user.last_name}} </h1>
 <div>
-    <img src="{{ user.avatar.imagen.url }}" style="max-width: 300px;"
+    <img src="{{ user.avatar.imagen.url }}" style="max-width: 150px; max-height: 150px;">
 </div>
 {% else %}
 <h1> Gracias por visitarnos </h1>
