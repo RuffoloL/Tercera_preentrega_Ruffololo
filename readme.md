@@ -21,6 +21,9 @@ Acceder con user y password via:
 
 ``` http://127.0.0.1:8000/admin/
 ```
+
+## Usuario ya creado en panel admin
+
 Usuario: luciano
 password: 1234abcd
 

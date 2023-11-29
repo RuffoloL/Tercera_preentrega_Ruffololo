@@ -7,6 +7,7 @@ class Auto(models.Model):
     año = models.PositiveIntegerField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    foto = models.ImageField(upload_to='autos_photos/', blank=True, null=True)
     
     def __str__(self):
        return f'{self.marca}, {self.modelo}, {self.año}, ${self.precio}'
@@ -18,6 +19,8 @@ class Moto(models.Model):
     año = models.PositiveIntegerField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    foto = models.ImageField(upload_to='motos_photos/', blank=True, null=True)
+    
     
     def __str__(self):
        return f'{self.marca}, {self.modelo}, {self.año}, ${self.precio}'

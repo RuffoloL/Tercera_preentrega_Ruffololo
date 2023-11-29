@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block titulo %}
 <title> - Autos - </title>
 {% endblock titulo %}
 
     {% block contenido %}
+    <img src="{% static 'assets/imagenes/autos.jpg' %}" alt="Mi Foto" style="width: 1500px; max-height: 500px;">
     <h1 style="color:blue;">
       Gracias por elegirnos 
     </h1>
@@ -28,7 +30,7 @@
           <th>Modelo</th>
           <th>Año</th>
           <th>Precio</th>
-          <th></th>
+          <th>Foto</th>
           <th></th>
         </tr>
         {% for auto in autos %}
@@ -38,6 +40,13 @@
           <td>{{ auto.modelo}}</td>
           <td>{{auto.año}}</td>
           <td>${{auto.precio}}</td>
+          <td>
+            {% if auto.foto %}
+            <img src="{{ auto.foto.url }}" alt="{{ auto.modelo }} Foto" style="max-width: 150px; max-height: 150px;">
+            {% else %}
+            <p>No hay foto disponible para mostrar</p>
+            {% endif %}
+            </td>
           <td>
             {% if user == auto.creador %}
             <a class="btn btn-primary btn-sm" href="{% url 'editar_auto' auto.id %}">Editar</a>

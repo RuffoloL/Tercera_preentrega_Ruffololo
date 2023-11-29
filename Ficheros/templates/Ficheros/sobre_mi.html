@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo%}
+Sobre mi
+{% endblock titulo%}
+
+{% block contenido %}
+<h1>Un poco sobre mi</h1>
+     
+<img src="{% static 'assets/imagenes/Luciano Ruffolo.jpg' %}" alt="Mi Foto" style="max-width: 300px; max-height: 300px;">
+
+    
+    <p>¡Bienvenido a mi Proyecto Final! Soy Ruffolo Luciano, y esta es una breve descripción sobre mí.
+        Tengo 30 años, un hijo de 7 años recien cumplidos, toda mi vida me dedique a trabajar en ventas,
+        dado que se me da muy bien con las personas, y decidi hacer un cambio rotundo y sumergirme de a poco 
+        en este gran mundo que es la programacion... asi que.. aqui me tienen, muchas gracias.
+    </p>
+{% endblock contenido%}

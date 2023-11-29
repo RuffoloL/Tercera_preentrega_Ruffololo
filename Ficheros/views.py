@@ -291,3 +291,7 @@ def editar_cliente(request, id):
        template_name='Ficheros/formulario_clientes1.html',
        context={'formulario': formulario},
    )
+   
+   
+def sobre_mi(request):
+    return render(request, 'Ficheros/sobre_mi.html')
