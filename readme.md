@@ -2,6 +2,10 @@
 Comision: 47780
 Alumno: Ruffolo Luciano
 
+## link video 
+ https://www.awesomescreenshot.com/video/22874081?key=d9f05f5a35ebe0dce344671c81a9554a
+ 
+
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta madre
 + Abre la consola y ubicate en la carpeta madre
